@@ -14,14 +14,14 @@
   
 <body>
 
-            <div class="border"></div>
-            <div class="loader"></div>
-            <p>Bitte warten...</p>
+    <div class="border"></div>
+    <div class="loader"></div>
+    <p>Bitte warten...</p>
         
 </body>
 
 <script>
-            // window.location.href = "/kotzapp-web/chats.html";
+    // window.location.href = "/kotzapp-web/chats.html";
 </script>
     
 <style>
@@ -56,19 +56,19 @@
     /* Grüner Balken */
     .loader {
       position: fixed;
-      width: 200px;
-      height: 5px;
+      width: 200px;   /* Länge des Balkens */
+      height: 5px;    /* Dicke des Balkens */
       background: #00C853;
       animation: moveAround 4s linear infinite;
     }
 
     @keyframes moveAround {
-      0%   { top: 0; left: 0; }
-      25%  { top: 0; left: calc(100% - 5px); }
-      50%  { top: calc(100% - 5px); left: calc(100% - 5px); }
-      75%  { top: calc(100% - 5px); left: 0; }
-      100% { top: 0; left: 0; }
+      0%   { top: 0; left: 0; transform: rotate(0deg); }
+      25%  { top: 0; left: calc(100% - 5px); transform: rotate(90deg); }
+      50%  { top: calc(100% - 5px); left: calc(100% - 5px); transform: rotate(180deg); }
+      75%  { top: calc(100% - 5px); left: 0; transform: rotate(270deg); }
+      100% { top: 0; left: 0; transform: rotate(360deg); }
     }
-  </style>
+</style>
   
 </html>
