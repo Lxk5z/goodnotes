@@ -13,31 +13,23 @@
 </head>
   
 <body>
-        <div class="object">
+
+            <div class="border"></div>
             <div class="loader"></div>
             <p>Bitte warten...</p>
-        </div>
+        
 </body>
 
 <script>
             // window.location.href = "/kotzapp-web/chats.html";
 </script>
-
+    
 <style>
-
     body {
-        background-color: #363636;
-    }
-
-    .object {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      z-index: 99999;   
+      margin: 0;
+      background-color: #363636;
+      height: 100vh;
+      overflow: hidden;
     }
 
     p {
@@ -45,21 +37,38 @@
         font-size: 16px;
         font-weight: 500;
         color: white;
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
-    @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-    
-  .loader {
-  border: 6px solid #eee;
-  border-top: 6px solid #00C853;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  animation: spin 1.0s linear infinite;
-}
-</style>
+    /* Feste 5px breite Border */
+    .border {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border: 5px solid #444; /* graue Grundlinie */
+      box-sizing: border-box;
+    }
+
+    /* Grüner Balken */
+    .loader {
+      position: fixed;
+      width: 5px;
+      height: 5px;
+      background: #00C853;
+      animation: moveAround 4s linear infinite;
+    }
+
+    @keyframes moveAround {
+      0%   { top: 0; left: 0; }
+      25%  { top: 0; left: calc(100% - 5px); }
+      50%  { top: calc(100% - 5px); left: calc(100% - 5px); }
+      75%  { top: calc(100% - 5px); left: 0; }
+      100% { top: 0; left: 0; }
+    }
+  </style>
   
 </html>
