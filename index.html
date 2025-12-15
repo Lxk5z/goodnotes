@@ -2,86 +2,145 @@
 <html lang="en">
 <head>
 
-    <link rel="icon" href="favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="manifest" href="manifest.json">
-  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goodnotes!</title>
-</head>
-  
-<body>
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
 
-    <div class="border"></div>
-    <div class="loader"></div>
-    <p>Bitte warten...</p>
-        
-</body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goodnotes!</title>
 
-<script>
-    // window.location.href = "/kotzapp-web/chats.html";
-</script>
-    
-<style>
+  <style>
     body {
       margin: 0;
       background-color: #363636;
       height: 100vh;
       overflow: hidden;
+      font-family: Arial, sans-serif;
     }
 
     p {
-        font-family: Arial;
-        font-size: 16px;
-        font-weight: 500;
-        color: white;
-        position: fixed;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+      z-index: 2;
     }
 
-    /* Feste 5px breite Border */
+    /* Border */
     .border {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border: 5px solid #444; /* graue Grundlinie */
+      inset: 0;
+      border: 5px solid #444;
       box-sizing: border-box;
     }
 
-    /* Grüner Balken */
-    .loader {
+    /* Wrapper für den Laufweg */
+    .loader-track {
       position: fixed;
-      width: 200px;   /* Länge des Balkens */
-      height: 5px;    /* Dicke des Balkens */
-      background: #00C853;
-      transform-origin: top left;
-      animation: moveAround 4s linear infinite;
+      inset: 5px;
+      pointer-events: none;
     }
 
-     @keyframes moveAround {
+    /* Smoothie Balken 🍹 */
+    .loader {
+      position: absolute;
+      width: 180px;
+      height: 5px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #00ff9c,
+        #00c853,
+        #00ff9c,
+        transparent
+      );
+      filter: blur(0.3px);
+      animation: smoothie 4.5s cubic-bezier(.6,.01,.4,1) infinite;
+    }
+
+    @keyframes smoothie {
       /* oben */
-      0%   { top: 0; left: 0; transform: rotate(0deg); }
-      24.9%{ top: 0; left: calc(100% - 200px); transform: rotate(0deg); }
-      25%  { top: 0; left: calc(100% - 5px); transform: rotate(90deg); }
+      0% {
+        top: 0;
+        left: 0;
+        width: 180px;
+        height: 5px;
+      }
+
+      25% {
+        top: 0;
+        left: calc(100% - 180px);
+        width: 180px;
+        height: 5px;
+      }
 
       /* rechts */
-      49.9%{ top: calc(100% - 200px); left: calc(100% - 5px); transform: rotate(90deg); }
-      50%  { top: calc(100% - 5px); left: calc(100% - 5px); transform: rotate(180deg); }
+      26% {
+        top: 0;
+        left: calc(100% - 5px);
+        width: 5px;
+        height: 180px;
+      }
+
+      50% {
+        top: calc(100% - 180px);
+        left: calc(100% - 5px);
+        width: 5px;
+        height: 180px;
+      }
 
       /* unten */
-      74.9%{ top: calc(100% - 5px); left: calc(100% - 200px); transform: rotate(180deg); }
-      75%  { top: calc(100% - 5px); left: 0; transform: rotate(270deg); }
+      51% {
+        top: calc(100% - 5px);
+        left: calc(100% - 180px);
+        width: 180px;
+        height: 5px;
+      }
+
+      75% {
+        top: calc(100% - 5px);
+        left: 0;
+        width: 180px;
+        height: 5px;
+      }
 
       /* links */
-      99.9%{ top: 0; left: 0; transform: rotate(270deg); }
-      100% { top: 0; left: 0; transform: rotate(360deg); }
+      76% {
+        top: calc(100% - 180px);
+        left: 0;
+        width: 5px;
+        height: 180px;
+      }
+
+      100% {
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 180px;
+      }
     }
-         
-</style>
-  
+  </style>
+</head>
+
+<body>
+
+  <div class="border"></div>
+
+  <div class="loader-track">
+    <div class="loader"></div>
+  </div>
+
+  <p>Bitte warten…</p>
+
+  <script>
+    // window.location.href = "/kotzapp-web/chats.html";
+  </script>
+
+</body>
 </html>
